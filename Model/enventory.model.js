@@ -1,6 +1,7 @@
 let mongoose=require("mongoose")
 let enventorySchema=mongoose.Schema({
     kms:Number,
+    userID:String,
     major_scratches:Number,
     originalpaint:String,
     number_of_accident:Number,
