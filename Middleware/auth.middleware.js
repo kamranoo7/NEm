@@ -1,25 +1,26 @@
-
-let jwt=require("jsonwebtoken")
+let jwt=require('jsonwebtoken')
 
 let auth=(req,res,next)=>{
-let token=req.headers.authorization?.split(" ")[1]
-if(token){
-    try{
-        let decoded=jwt.verify(token,"masai")
-        if(decoded){
-            next()
-        }else{
-            res.status(200).json({msg:"Token not recognised"})
+    let token=req.headers.authorization
+    if(token){
+        try{
+            let decoded=jwt.verify(token.split(" ")[1],"masai");
+            if(decoded){
+                console.log(decoded)
+                req.body.userID=decoded.userID
+                req.body.name=decoded.name
+                next()
+            }else{
+                res.send({"msg":"Please Login first"})
+            }
+        }catch(err){
+            res.send({"msg":err.message})
         }
-        
-    }catch(err){
-    res.status(400).json({error:err.message})
+    }else{
+        res.send({"msg":"please Login"})
     }
-}else{
-    res.status(400).json({msg:"Please Login First"})
 }
 
-}
 module.exports={
     auth
 }
