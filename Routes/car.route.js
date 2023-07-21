@@ -28,12 +28,12 @@ carRouter.get("/",async(req,res)=>{
 
 
 //Update
-carRouter.put("/update/:postID",async(req,res)=>{
+carRouter.proppatch("/update/:postID",async(req,res)=>{
     
     let {postID}=req.params
-       let payload=req.body
+       let {image,title,color,price,mileage}=req.body
     try{
-        await CarModel.findByIdAndUpdate({_id:postID},payload)
+        await CarModel.findByIdAndUpdate({_id:postID},{image,title,color,price,mileage})
         res.status(200).json({msg:"Car has been updated"})
     }catch(err){
         res.status(400).json({error:err.message})
