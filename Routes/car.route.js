@@ -18,7 +18,7 @@ res.status(400).json({error:err.message})
 carRouter.get("/",async(req,res)=>{
     
     try{
-        let car=await CarModel.find()
+        let car=await CarModel.find({userID:req.body.userID})
         res.send(car)
        
     }catch(err){
