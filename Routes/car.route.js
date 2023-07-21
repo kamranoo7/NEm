@@ -66,7 +66,7 @@ res.send(data)
 //Sort_Price_Descending
 carRouter.get("/descending",async(req,res)=>{
     try{
-        let data=await CarModel.find().sort({price:-1})
+        let data=await CarModel.find({userID:req.body.userID}).sort({price:-1})
         res.send(data)
     }catch(err){
         res.status(400).send({"msg":err.message}) 
