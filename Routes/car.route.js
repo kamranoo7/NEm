@@ -28,7 +28,7 @@ carRouter.get("/",async(req,res)=>{
 
 
 //Update
-carRouter.put("/update/:postID",async(req,res)=>{
+carRouter.patch("/update/:postID",async(req,res)=>{
     
     let {postID}=req.params
       let payload=req.body
